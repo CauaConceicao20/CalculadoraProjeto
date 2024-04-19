@@ -35,6 +35,14 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Validate commits
+        run: |
+          commit_message=$(git log -1 --pretty=format:"%s" HEAD)
+          if [[ ! $commit_message =~ ((build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(.*\))?!?: .*) ]]; then
+            echo "commit is not valid: '$commit_message'"
+            exit 1
+          fi 
+
       - name: Build with Maven
         run: mvn -B clean package
         working-directory: calculadora
