@@ -1,9 +1,9 @@
 package br.com.projeto.calculadora.service;
 
 
+import br.com.projeto.calculadora.dtos.DadosPessoa;
 import br.com.projeto.calculadora.dtos.ValoresDto;
 import br.com.projeto.calculadora.dtos.ValoresPrecisosDto;
-import br.com.projeto.calculadora.entidade.Pessoa;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -94,13 +94,13 @@ public class OperacoesServiceTest {
     @DisplayName("Testa metodo de calculaImc")
     public void calculaImc() {
         OperacoesService operacoesService = new OperacoesService();
-        Pessoa pessoa = mock(Pessoa.class);
+        DadosPessoa dadosPessoa = mock(DadosPessoa.class);
 
-        when(pessoa.getAltura()).thenReturn(1.74);
-        when(pessoa.getPeso()).thenReturn(62.0);
+        when(dadosPessoa.altura()).thenReturn(1.74);
+        when(dadosPessoa.peso()).thenReturn(62.0);
 
-        assertTrue(pessoa.getPeso() > 2.0);
-        assertTrue(pessoa.getAltura() > 0.43);
+        assertTrue(dadosPessoa.altura() > 0.43);
+        assertTrue(dadosPessoa.peso() > 2.0);
 
         var resultado = operacoesService.calculaImc(valoresDto.numero1(), valoresDto.numero2());
 
