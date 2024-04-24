@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/CauaConceicao20/CalculadoraProjeto/compare/v1.1.0...v1.2.0) (2024-04-24)
+
+
+### Features
+
+* adiciona endpoint create no PessoaController ([de452cc](https://github.com/CauaConceicao20/CalculadoraProjeto/commit/de452cce54e4f3a7eeb9fab41257e219d4556fb0))
+
 # [1.1.0](https://github.com/CauaConceicao20/CalculadoraProjeto/compare/v1.0.0...v1.1.0) (2024-04-24)
 
 
