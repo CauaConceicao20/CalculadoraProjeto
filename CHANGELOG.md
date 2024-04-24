@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/CauaConceicao20/CalculadoraProjeto/compare/v1.0.0...v1.1.0) (2024-04-24)
+
+
+### Features
+
+* adiciona metodos da classe  OperaçoesService ([7435ee1](https://github.com/CauaConceicao20/CalculadoraProjeto/commit/7435ee1f78b35546445b04689d52dcbd4a6cb4b7))
+
 # 1.0.0 (2024-04-17)
 
 
