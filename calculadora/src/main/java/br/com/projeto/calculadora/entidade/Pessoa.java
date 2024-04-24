@@ -1,9 +1,6 @@
 package br.com.projeto.calculadora.entidade;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -11,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-@Entity
+@Entity(name = "/Pessoa")
 public class Pessoa {
 
     @Id
@@ -20,6 +17,13 @@ public class Pessoa {
     private String nome;
     private double peso;
     private double altura;
+
+
+    public Pessoa(String nome ,double peso, double altura) {
+        this.nome = nome;
+        this.altura = altura;
+        this.peso = peso;
+    }
 
     public Pessoa(double peso, double altura) {
         this.peso = peso;
