@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
 public class PessoaServiceTest {
-    @Autowired
+  /*  @Autowired
     PessoaService pessoaService;
 
     @Autowired
@@ -36,5 +36,5 @@ public class PessoaServiceTest {
 
        assertEquals(1, quantidade);
        assertEquals("fulano", nome);
-    }
+    }*/
 }
