@@ -15,8 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
@@ -27,6 +26,7 @@ public class OperacoesServiceTest {
     @Mock
     ValoresDto valoresDto;
 
+
   @Test
     @DisplayName("Testa metodo de soma")
     public void somaTest() {
@@ -36,9 +36,12 @@ public class OperacoesServiceTest {
 
         var resultado = operacoesService.soma(valoresDto.numero1(), valoresDto.numero2());
 
+
+        verify(valoresDto, times(1)).numero1();
+        verify(valoresDto, times(1)).numero2();
+
         assertEquals(12.0, resultado);
     }
-
     @Test
     @DisplayName("Testa metodo de subtração")
     public void subtracaoTest() {
@@ -47,6 +50,9 @@ public class OperacoesServiceTest {
         when(valoresDto.numero2()).thenReturn(2.0);
 
         var resultado = operacoesService.subtracao(valoresDto.numero1(), valoresDto.numero2());
+
+        verify(valoresDto, times(1)).numero1();
+        verify(valoresDto, times(1)).numero2();
 
         assertEquals(8.0, resultado);
     }
@@ -60,18 +66,23 @@ public class OperacoesServiceTest {
 
         var resultado = operacoesService.multiplicacao(valoresDto.numero1(), valoresDto.numero2());
 
+        verify(valoresDto, times(1)).numero1();
+        verify(valoresDto, times(1)).numero2();
+
         assertEquals(20.0, resultado);
     }
 
     @Test
     @DisplayName("Testa metodo de divisão")
     public void DivisaoTest() {
-        ;
 
         when(valoresDto.numero1()).thenReturn(10.0);
         when(valoresDto.numero2()).thenReturn(2.0);
 
         var resultado = operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2());
+
+        verify(valoresDto, times(1)).numero1();
+        verify(valoresDto, times(1)).numero2();
 
         assertEquals(5.0, resultado);
     }
@@ -95,18 +106,24 @@ public class OperacoesServiceTest {
 
         var resultado = operacoesService.calculaImc(dadosPessoa.altura(), dadosPessoa.peso());
 
-        assertEquals(20.48, resultado);
+        verify(dadosPessoa, times(1)).altura();
+        verify(dadosPessoa, times(1)).peso();
 
+        assertEquals(20.48, resultado);
     }
 
     @Test
     @DisplayName("CalculoDeImc deve lancar Exception quando entrada ser menor ou igual a zero")
     public void TestCalculoDeImcComValoresZMenorIgualZero() {
-        when(valoresDto.numero1()).thenReturn(10.0);
-        when(valoresDto.numero2()).thenReturn(0.0);
+        DadosPessoa dadosPessoa = mock(DadosPessoa.class);
 
+        when(dadosPessoa.altura()).thenReturn(1.74);
+        when(dadosPessoa.peso()).thenReturn(0.0);
 
-        assertThrows(EntradaInvalida.class, () -> operacoesService.calculaImc(valoresDto.numero1(), valoresDto.numero2()));
+        assertThrows(EntradaInvalida.class, () -> operacoesService.calculaImc(dadosPessoa.altura(), dadosPessoa.peso()));
+
+        verify(dadosPessoa, times(1)).altura();
+        verify(dadosPessoa, times(1)).peso();
     }
 
     @Test
@@ -118,6 +135,9 @@ public class OperacoesServiceTest {
 
         var resultado = operacoesService.calculaPotencia(valoresDto.numero1(), valoresDto.numero2());
 
+        verify(valoresDto, times(1)).numero1();
+        verify(valoresDto, times(1)).numero2();
+
         assertEquals(100.0, resultado);
     }
 
@@ -128,8 +148,10 @@ public class OperacoesServiceTest {
         when(valoresDto.numero1()).thenReturn(10.0);
         when(valoresDto.numero2()).thenReturn(0.0);
 
-
         assertThrows(EntradaInvalida.class, () -> operacoesService.calculaPotencia(valoresDto.numero1(), valoresDto.numero2()));
+
+        verify(valoresDto, times(1)).numero1();
+        verify(valoresDto, times(1)).numero2();
     }
 
     @Test
@@ -140,9 +162,9 @@ public class OperacoesServiceTest {
 
         when(valoresPrecisosDto.numeroPreciso1()).thenReturn(new BigDecimal("30.0"));
 
-        assertTrue(valoresPrecisosDto.numeroPreciso1().compareTo(BigDecimal.ZERO) > 0);
-
         var resultado = operacoesService.converteRealEmDolar(valoresPrecisosDto.numeroPreciso1());
+
+        verify(valoresPrecisosDto, times(1)).numeroPreciso1();
 
         assertEquals(new BigDecimal("5.70"), resultado);
     }
@@ -153,9 +175,11 @@ public class OperacoesServiceTest {
 
         ValoresPrecisosDto valoresPrecisosDto = mock(ValoresPrecisosDto.class);
 
-        when(valoresPrecisosDto.numeroPreciso1()).thenReturn(new BigDecimal("0.0"));
+        when(valoresPrecisosDto.numeroPreciso1()).thenReturn(new BigDecimal("-0.0"));
 
         assertThrows(EntradaInvalida.class, () ->  operacoesService.converteRealEmDolar(valoresPrecisosDto.numeroPreciso1()));
+
+        verify(valoresPrecisosDto, times(1)).numeroPreciso1();
     }
 
     @Test
@@ -166,9 +190,9 @@ public class OperacoesServiceTest {
 
         when(valoresPrecisosDto.numeroPreciso1()).thenReturn(new BigDecimal("100.0"));
 
-        assertTrue(valoresPrecisosDto.numeroPreciso1().compareTo(BigDecimal.ZERO) > 0);
-
         var resultado = operacoesService.converteDolarEmReal(valoresPrecisosDto.numeroPreciso1());
+
+        verify(valoresPrecisosDto, times(1)).numeroPreciso1();
 
         assertEquals(new BigDecimal("513.00"), resultado);
     }
@@ -182,6 +206,8 @@ public class OperacoesServiceTest {
         when(valoresPrecisosDto.numeroPreciso1()).thenReturn(new BigDecimal("0.0"));
 
         assertThrows(EntradaInvalida.class, () -> operacoesService.converteDolarEmReal(valoresPrecisosDto.numeroPreciso1()));
+
+        verify(valoresPrecisosDto, times(1)).numeroPreciso1();
     }
 
     @Test
@@ -190,9 +216,9 @@ public class OperacoesServiceTest {
 
         when(valoresDto.numero1()).thenReturn(100.0);
 
-        assertTrue(valoresDto.numero1() > 0);
-
         var resultado = operacoesService.calculaRaizQuadrada(valoresDto.numero1());
+
+        verify(valoresDto, times(1)).numero1();
 
         assertEquals(10.0, resultado);
     }
@@ -204,6 +230,9 @@ public class OperacoesServiceTest {
         when(valoresDto.numero1()).thenReturn(0.0);
 
         assertThrows(EntradaInvalida.class, () -> operacoesService.calculaRaizQuadrada(valoresDto.numero1()));
+
+        verify(valoresDto, times(1)).numero1();
+
     }
 
     @Test
@@ -213,10 +242,11 @@ public class OperacoesServiceTest {
         when(valoresDto.numero1()).thenReturn(10.0);
         when(valoresDto.numero2()).thenReturn(2.0);
 
-        assertTrue(valoresDto.numero1() > 0);
-        assertTrue(valoresDto.numero2() > 0);
-
         var resultado = operacoesService.calculaMedia(valoresDto.numero1(), valoresDto.numero2());
+
+        verify(valoresDto, times(1)).numero1();
+        verify(valoresDto, times(1)).numero2();
+
 
         assertEquals(6.0, resultado);
     }
@@ -229,5 +259,8 @@ public class OperacoesServiceTest {
         when(valoresDto.numero2()).thenReturn(0.0);
 
         assertThrows(EntradaInvalida.class, () -> operacoesService.calculaMedia(valoresDto.numero1(), valoresDto.numero2()));
+
+        verify(valoresDto, times(1)).numero1();
+        verify(valoresDto, times(1)).numero2();
     }
 }

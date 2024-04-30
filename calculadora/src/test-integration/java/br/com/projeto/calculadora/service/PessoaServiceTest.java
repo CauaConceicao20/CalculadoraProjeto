@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
@@ -21,14 +19,12 @@ public class PessoaServiceTest {
 
     @Autowired
     PessoaRepository repository;
+
     @Test
     @DisplayName("Deve testar quantidade de pessoas cadastradas e se o registro foi salvo")
     public void deveSalvarPessoaNoBd() {
-       DadosPessoa dadosPessoa = mock(DadosPessoa.class);
 
-       when(dadosPessoa.nome()).thenReturn("fulano");
-       when(dadosPessoa.altura()).thenReturn(1.64);
-       when(dadosPessoa.peso()).thenReturn(42.5);
+       DadosPessoa dadosPessoa = new DadosPessoa("fulano", 1.64 , 42.5)  ;
 
        pessoaService.save(dadosPessoa);
 

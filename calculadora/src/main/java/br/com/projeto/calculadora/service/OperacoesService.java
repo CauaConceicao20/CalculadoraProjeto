@@ -33,7 +33,7 @@ public class OperacoesService {
     }
 
     public double calculaImc(double altura, double peso) throws EntradaInvalida {
-        if(altura == 0 || peso == 0) {
+        if(altura <= 0 || peso <= 0) {
             throw new EntradaInvalida("não é permitido valores zero ou menor");
         }else {
             var imc = peso / (altura * altura);
