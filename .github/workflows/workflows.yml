@@ -60,6 +60,22 @@ jobs:
         run: mvn test
         working-directory: calculadora
 
+  integration-test:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '19'
+          distribution: 'adopt'
+
+      - name: Run Integration Tests
+        run: mvn integration-test
+        working-directory: calculadora
+
   release:
     runs-on: ubuntu-latest
     needs: test
