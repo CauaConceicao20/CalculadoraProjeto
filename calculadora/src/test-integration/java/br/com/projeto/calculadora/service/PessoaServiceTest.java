@@ -24,15 +24,14 @@ public class PessoaServiceTest {
     @DisplayName("Deve testar quantidade de pessoas cadastradas e se o registro foi salvo")
     public void deveSalvarPessoaNoBd() {
 
-       DadosPessoa dadosPessoa = new DadosPessoa("fulano", 1.64 , 42.5)  ;
+        DadosPessoa dadosPessoa = new DadosPessoa("fulano", 1.64 , 42.5)  ;
 
-       pessoaService.save(dadosPessoa);
+        pessoaService.save(dadosPessoa);
 
-       var quantidade = repository.findAll().size();
-       var nome = repository.findById(1L).get().getNome();
+        var quantidade = repository.findAll().size();
+        var nome = repository.findById(1L).get().getNome();
 
-       assertEquals(1, quantidade);
-       assertEquals("fulano", nome);
+        assertEquals(1, quantidade);
+        assertEquals("fulano", nome);
     }
 }
-
