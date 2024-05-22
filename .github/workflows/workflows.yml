@@ -64,7 +64,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: jacoco-report
-          path: calculadora/target/site/jacoco
+          path: calculadora/target/site/jacoco/**
 
   integration-test:
     runs-on: ubuntu-latest
