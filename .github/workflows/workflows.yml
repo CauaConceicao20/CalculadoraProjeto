@@ -55,10 +55,16 @@ jobs:
         with:
           java-version: '19'
           distribution: 'adopt'
-
-      - name: Run Tests
-        run: mvn test
+      
+      - name: Run Tests and Generate JaCoCo Report
+        run: mvn test jacoco:report
         working-directory: calculadora
+
+      - name: Archive JaCoCo Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: jacoco-report
+          path: calculadora/target/site/jacoco
 
   integration-test:
     runs-on: ubuntu-latest
