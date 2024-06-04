@@ -64,7 +64,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: jacoco-report
-          path: calculadora/target/site/jacoco/**
+          path: calculadora/target/site/jacoco/
 
   integration-test:
     runs-on: ubuntu-latest
@@ -107,3 +107,22 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           REPOSITORY_URL: ${{ secrets.REPOSITORY_URL }}
         run: npx semantic-release
+
+      - name: Download JaCoCo Report
+        uses: actions/download-artifact@v2
+        with:
+          name: jacoco-report
+          path: calculadora/target/site/jacoco
+
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
+
+      - name: Send JaCoCo Report to FTP
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: |
+            lftp -u $FTP_USER,$FTP_PASS $FTP_HOST -e "
+            mirror -R calculadora/target/site/jacoco /CalculadoraProjeto;
+            quit"
