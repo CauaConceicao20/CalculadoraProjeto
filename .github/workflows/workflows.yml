@@ -66,7 +66,7 @@ jobs:
           name: jacoco-report
           path: calculadora/target/site/jacoco/
 
-  release:
+  integration-test:
     runs-on: ubuntu-latest
     needs: test
     if: github.event.workflow_run.head_branch == 'release'
