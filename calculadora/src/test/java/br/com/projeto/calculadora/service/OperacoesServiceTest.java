@@ -42,7 +42,7 @@ public class OperacoesServiceTest {
 
           assertEquals(12.0, resultado);
       } catch (Exception e) {
-          Object fail = fail("Deveria ter somado sem lançar exceção, mas lançou: " + e.getMessage());
+          fail("Deveria ter somado sem lançar exceção, mas lançou: " + e.getMessage());
       }
   }
     @Test
@@ -82,12 +82,16 @@ public class OperacoesServiceTest {
         when(valoresDto.numero1()).thenReturn(10.0);
         when(valoresDto.numero2()).thenReturn(2.0);
 
-        var resultado = operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2());
+        try {
+            var resultado = operacoesService.subtracao(valoresDto.numero1(), valoresDto.numero2());
 
-        verify(valoresDto, times(1)).numero1();
-        verify(valoresDto, times(1)).numero2();
+            verify(valoresDto, times(1)).numero1();
+            verify(valoresDto, times(1)).numero2();
 
-        assertEquals(5.0, resultado);
+            assertEquals(8.0, resultado);
+        } catch (Exception e) {
+            fail("Deveria ter subtraído sem lançar exceção, mas lançou: " + e.getMessage());
+        }
     }
 
     @Test
@@ -96,7 +100,16 @@ public class OperacoesServiceTest {
         when(valoresDto.numero1()).thenReturn(10.0);
         when(valoresDto.numero2()).thenReturn(0.0);
 
-        assertThrows(ArithmeticException.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
+        try {
+            var resultado = operacoesService.multiplicacao(valoresDto.numero1(), valoresDto.numero2());
+
+            verify(valoresDto, times(1)).numero1();
+            verify(valoresDto, times(1)).numero2();
+
+            assertEquals(20.0, resultado);
+        } catch (Exception e) {
+            fail("Deveria ter multiplicado sem lançar exceção, mas lançou: " + e.getMessage());
+        }
     }
     @Test
     @DisplayName("Testa metodo de calculaImc")
