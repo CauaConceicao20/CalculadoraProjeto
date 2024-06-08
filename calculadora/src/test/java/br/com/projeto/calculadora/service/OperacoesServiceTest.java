@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,17 +32,19 @@ public class OperacoesServiceTest {
     @DisplayName("Testa metodo de soma")
     public void somaTest() {
 
-        when(valoresDto.numero1()).thenReturn(10.0);
-        when(valoresDto.numero2()).thenReturn(2.0);
+      when(valoresDto.numero1()).thenReturn(10.0);
+      when(valoresDto.numero2()).thenReturn(2.0);
+      try {
+          var resultado = operacoesService.soma(valoresDto.numero1(), valoresDto.numero2());
 
-        var resultado = operacoesService.soma(valoresDto.numero1(), valoresDto.numero2());
+          verify(valoresDto, times(1)).numero1();
+          verify(valoresDto, times(1)).numero2();
 
-
-        verify(valoresDto, times(1)).numero1();
-        verify(valoresDto, times(1)).numero2();
-
-        assertEquals(12.0, resultado);
-    }
+          assertEquals(12.0, resultado);
+      } catch (Exception e) {
+          Object fail = fail("Deveria ter somado sem lançar exceção, mas lançou: " + e.getMessage());
+      }
+  }
     @Test
     @DisplayName("Testa metodo de subtração")
     public void subtracaoTest() {
