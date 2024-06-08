@@ -51,37 +51,6 @@ public class OperacoesServiceTest {
 
         when(valoresDto.numero1()).thenReturn(10.0);
         when(valoresDto.numero2()).thenReturn(2.0);
-
-        var resultado = operacoesService.subtracao(valoresDto.numero1(), valoresDto.numero2());
-
-        verify(valoresDto, times(1)).numero1();
-        verify(valoresDto, times(1)).numero2();
-
-        assertEquals(8.0, resultado);
-    }
-
-    @Test
-    @DisplayName("Testa metodo de multiplicação")
-    public void multiplicacaoTest() {
-
-        when(valoresDto.numero1()).thenReturn(10.0);
-        when(valoresDto.numero2()).thenReturn(2.0);
-
-        var resultado = operacoesService.multiplicacao(valoresDto.numero1(), valoresDto.numero2());
-
-        verify(valoresDto, times(1)).numero1();
-        verify(valoresDto, times(1)).numero2();
-
-        assertEquals(20.0, resultado);
-    }
-
-    @Test
-    @DisplayName("Testa metodo de divisão")
-    public void divisaoTest() {
-
-        when(valoresDto.numero1()).thenReturn(10.0);
-        when(valoresDto.numero2()).thenReturn(2.0);
-
         try {
             var resultado = operacoesService.subtracao(valoresDto.numero1(), valoresDto.numero2());
 
@@ -95,10 +64,11 @@ public class OperacoesServiceTest {
     }
 
     @Test
-    @DisplayName("Deve lancar Exception quando divisão for por zero")
-    public void divisaoPorZeroTest() {
+    @DisplayName("Testa metodo de multiplicação")
+    public void multiplicacaoTest() {
+
         when(valoresDto.numero1()).thenReturn(10.0);
-        when(valoresDto.numero2()).thenReturn(0.0);
+        when(valoresDto.numero2()).thenReturn(2.0);
 
         try {
             var resultado = operacoesService.multiplicacao(valoresDto.numero1(), valoresDto.numero2());
@@ -110,6 +80,30 @@ public class OperacoesServiceTest {
         } catch (Exception e) {
             fail("Deveria ter multiplicado sem lançar exceção, mas lançou: " + e.getMessage());
         }
+    }
+
+    @Test
+    @DisplayName("Testa metodo de divisão")
+    public void divisaoTest() {
+
+        when(valoresDto.numero1()).thenReturn(10.0);
+        when(valoresDto.numero2()).thenReturn(2.0);
+
+        var resultado = operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2());
+
+        verify(valoresDto, times(1)).numero1();
+        verify(valoresDto, times(1)).numero2();
+
+        assertEquals(5.0, resultado);
+    }
+
+    @Test
+    @DisplayName("Deve lancar Exception quando divisão for por zero")
+    public void divisaoPorZeroTest() {
+        when(valoresDto.numero1()).thenReturn(10.0);
+        when(valoresDto.numero2()).thenReturn(0.0);
+
+        assertThrows(ArithmeticException.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
     }
     @Test
     @DisplayName("Testa metodo de calculaImc")
