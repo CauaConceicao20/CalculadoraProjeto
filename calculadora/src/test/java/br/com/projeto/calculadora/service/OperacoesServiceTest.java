@@ -24,7 +24,7 @@ public class OperacoesServiceTest {
     @Autowired
     OperacoesService operacoesService;
     @Mock
-    ValoresDto valoresDto;
+    ValoresDto valoresDto = mock(ValoresDto.class);
 
 
   @Test
@@ -59,7 +59,7 @@ public class OperacoesServiceTest {
 
     @Test
     @DisplayName("Testa metodo de multiplicação")
-    public void multiplicaçãoTest() {
+    public void multiplicacaoTest() {
 
         when(valoresDto.numero1()).thenReturn(10.0);
         when(valoresDto.numero2()).thenReturn(2.0);
@@ -74,7 +74,7 @@ public class OperacoesServiceTest {
 
     @Test
     @DisplayName("Testa metodo de divisão")
-    public void DivisaoTest() {
+    public void divisaoTest() {
 
         when(valoresDto.numero1()).thenReturn(10.0);
         when(valoresDto.numero2()).thenReturn(2.0);
@@ -89,7 +89,7 @@ public class OperacoesServiceTest {
 
     @Test
     @DisplayName("Deve lancar Exception quando divisão for por zero")
-    public void DivisaoPorZeroTest() {
+    public void divisaoPorZeroTest() {
         when(valoresDto.numero1()).thenReturn(10.0);
         when(valoresDto.numero2()).thenReturn(0.0);
 
@@ -114,7 +114,7 @@ public class OperacoesServiceTest {
 
     @Test
     @DisplayName("CalculoDeImc deve lancar Exception quando entrada ser menor ou igual a zero")
-    public void TestCalculoDeImcComValoresZMenorIgualZero() {
+    public void testaCalculoDeImcComValoresMenorIgualZero() {
         DadosPessoa dadosPessoa = mock(DadosPessoa.class);
 
         when(dadosPessoa.altura()).thenReturn(1.74);
@@ -143,7 +143,7 @@ public class OperacoesServiceTest {
 
     @Test
     @DisplayName("Calculo de potencia Deve lancar Exception quando houver entrada menor ou igual a zero")
-    public void TestaPotenciaComValoresZMenorIgualZero() {
+    public void testaPotenciaComValoresMenorIgualZero() {
 
         when(valoresDto.numero1()).thenReturn(10.0);
         when(valoresDto.numero2()).thenReturn(0.0);
@@ -171,7 +171,7 @@ public class OperacoesServiceTest {
 
     @Test
     @DisplayName("Converso de real em dolar deve lancar exception quando houver entrada menor ou igual a zero")
-    public void TestaConverteRealEmDolarComValoresZMenorIgualZero() {
+    public void testaConverteRealEmDolarComValoresMenorIgualZero() {
 
         ValoresPrecisosDto valoresPrecisosDto = mock(ValoresPrecisosDto.class);
 
@@ -184,7 +184,7 @@ public class OperacoesServiceTest {
 
     @Test
     @DisplayName("Testa metodo de converteDolarEmReal")
-    public void converteDolarEmRealTest() throws EntradaInvalida {
+    public void converteDolarEmRealTeste() throws EntradaInvalida {
 
         ValoresPrecisosDto valoresPrecisosDto = mock(ValoresPrecisosDto.class);
 
@@ -199,7 +199,7 @@ public class OperacoesServiceTest {
 
     @Test
     @DisplayName("Conversor de dolar em real deve lancar exception quando houver entrada menor ou igual a zero")
-    public void TestaConverteDolarEmRealComValoresZMenorIgualZero() {
+    public void testaConverterDolarEmRealComValoresMenorIgualZero() {
 
         ValoresPrecisosDto valoresPrecisosDto = mock(ValoresPrecisosDto.class);
 
@@ -212,7 +212,7 @@ public class OperacoesServiceTest {
 
     @Test
     @DisplayName("Testa metodo de calcularRaizQuadrada")
-    public void calculaRaizQuadradaTest() throws EntradaInvalida {
+    public void calculaRaizQuadradaTeste() throws EntradaInvalida {
 
         when(valoresDto.numero1()).thenReturn(100.0);
 
@@ -225,7 +225,7 @@ public class OperacoesServiceTest {
 
     @Test
     @DisplayName("calculo de Raiz Quadrada deve lancar exception quando houver entrada menor ou igual a zero")
-    public void TestacalculaRaizQuadradaComValoresZMenorIgualZero() {
+    public void testeCalculaRaizQuadradaComValoresZMenorIgualZero() {
 
         when(valoresDto.numero1()).thenReturn(0.0);
 
