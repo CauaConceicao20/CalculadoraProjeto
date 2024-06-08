@@ -9,7 +9,7 @@ import java.math.RoundingMode;
 @Service
 public class OperacoesService {
 
-    private final String valorMenorQueZero = "Não permitir divisão por zero";
+    private final static String valorMenorQueZero = "Não permitir divisão por zero";
 
     public double soma(double valor1, double valor2) {
         double resultado = valor1 + valor2;

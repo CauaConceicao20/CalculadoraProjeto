@@ -7,6 +7,7 @@ import br.com.projeto.calculadora.exception.EntradaInvalida;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,10 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class OperacoesServiceTest {
 
-    @Autowired
+    @InjectMocks
     OperacoesService operacoesService;
     @Mock
     ValoresDto valoresDto = mock(ValoresDto.class);
-
 
   @Test
     @DisplayName("Testa metodo de soma")
