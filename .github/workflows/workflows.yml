@@ -79,6 +79,7 @@ jobs:
 
       - name: compile project
         run: mvn clean install
+        working-directory: calculadora
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
