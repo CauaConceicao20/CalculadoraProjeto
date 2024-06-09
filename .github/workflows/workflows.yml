@@ -86,11 +86,11 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          args: >
-            -Dsonar.projectKey=CauaConceicao20_CalculadoraProjeto
-            -Dsonar.organization=caua-conceicao
-            -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          run: mvn verify sonar:sonar \
+            -Dsonar.projectKey=CauaConceicao20_CalculadoraProjeto \
+            -Dsonar.organization=caua-conceicao \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
             -Dsonar.java.binaries=target/classes
           projectBaseDir: calculadora
 
