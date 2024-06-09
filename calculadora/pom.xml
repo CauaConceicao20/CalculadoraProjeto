@@ -18,6 +18,7 @@
 		<sonar.organization>caua-conceicao</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<sonar.java.binaries>target/classes</sonar.java.binaries>
+		<sonar.exclusions>**/OperacoesServiceTest*.java,**/PessoaServiceTest*.java</sonar.exclusions>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -121,5 +122,6 @@
 				<version>3.9.1.2184</version>
 			</plugin>
 		</plugins>
+
 	</build>
 </project>
