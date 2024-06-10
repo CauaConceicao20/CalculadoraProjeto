@@ -77,22 +77,10 @@ jobs:
           java-version: '19'
           distribution: 'adopt'
 
-      - name: compile project
-        run: mvn clean install
-        working-directory: calculadora
-
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.projectKey=CauaConceicao20_CalculadoraProjeto
-            -Dsonar.organization=caua-conceicao
-            -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-            -Dsonar.java.binaries=target/classes
-          projectBaseDir: calculadora
+        run: mvn sonar:sonar -Dsonar.projectKey=CauaConceicao20_CalculadoraProjeto -Dsonar.organization=caua-conceicao -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
   release:
     runs-on: ubuntu-latest
