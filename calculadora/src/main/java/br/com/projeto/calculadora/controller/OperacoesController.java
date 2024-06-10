@@ -3,6 +3,7 @@ package br.com.projeto.calculadora.controller;
 import br.com.projeto.calculadora.dtos.ValoresDto;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +16,7 @@ public class OperacoesController {
 
     @PostMapping("/soma")
     @Transactional
-    public ResponseEntity<?> soma(@RequestBody @Valid ValoresDto val) {
-        return null;
+    public ResponseEntity<Double> soma(@RequestBody @Valid ValoresDto val) {
+        return ResponseEntity.ok().build();
     }
 }

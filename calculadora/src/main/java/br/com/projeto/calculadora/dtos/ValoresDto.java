@@ -1,7 +1,6 @@
 package br.com.projeto.calculadora.dtos;
 
 import jakarta.validation.constraints.Positive;
-import lombok.Getter;
 
 public record ValoresDto(
         @Positive
