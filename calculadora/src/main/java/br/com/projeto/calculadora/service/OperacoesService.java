@@ -26,9 +26,9 @@ public class OperacoesService {
         return Math.round(resultado * 10) / 10.0;
     }
 
-    public double divisao(double valor1, double valor2) throws ArithmeticException{
+    public double divisao(double valor1, double valor2) throws EntradaInvalida{
         if(valor1 <= 0 || valor2 <= 0 || Double.isNaN(valor1) || Double.isNaN(valor2)) {
-            throw new ArithmeticException(VALORMENORQUEZERO);
+            throw new EntradaInvalida(VALORMENORQUEZERO);
         }else {
             return  valor1 / valor2;
         }

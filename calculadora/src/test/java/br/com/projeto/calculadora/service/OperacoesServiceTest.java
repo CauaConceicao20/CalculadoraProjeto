@@ -75,7 +75,7 @@ class OperacoesServiceTest {
 
     @Test
     @DisplayName("Testa metodo de divisão")
-     void divisaoTest() {
+     void divisaoTest() throws EntradaInvalida {
 
         when(valoresDto.numero1()).thenReturn(10.0);
         when(valoresDto.numero2()).thenReturn(2.0);
@@ -92,10 +92,11 @@ class OperacoesServiceTest {
     @Test
     @DisplayName("Deve lancar Exception quando divisão for por zero")
      void divisaoPorZeroValor1Test() {
+
         when(valoresDto.numero1()).thenReturn(10.0);
         when(valoresDto.numero2()).thenReturn(0.0);
 
-        assertThrows(ArithmeticException.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
+        assertThrows(EntradaInvalida.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
     }
 
     @Test
@@ -104,7 +105,7 @@ class OperacoesServiceTest {
         when(valoresDto.numero1()).thenReturn(0.0);
         when(valoresDto.numero2()).thenReturn(10.0);
 
-        assertThrows(ArithmeticException.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
+        assertThrows(EntradaInvalida.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
     }
 
     @Test
@@ -113,7 +114,7 @@ class OperacoesServiceTest {
         when(valoresDto.numero1()).thenReturn(Double.NaN);
         when(valoresDto.numero2()).thenReturn(10.0);
 
-        assertThrows(ArithmeticException.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
+        assertThrows(EntradaInvalida.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
     }
     @Test
     @DisplayName("Deve lancar Exception quando valor2 == NaN")
@@ -121,7 +122,7 @@ class OperacoesServiceTest {
         when(valoresDto.numero1()).thenReturn(10.0);
         when(valoresDto.numero2()).thenReturn(Double.NaN);
 
-        assertThrows(ArithmeticException.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
+        assertThrows(EntradaInvalida.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
     }
 
     @Test
@@ -310,7 +311,7 @@ class OperacoesServiceTest {
 
     @Test
     @DisplayName("calculo de Media deve lancar exception quando valor1 menor ou igual a zero")
-     void calculaMediaComValoresMenorIgualAZero() {
+     void calculaMediaComValor1MenorIgualAZero() {
 
         when(valoresDto.numero1()).thenReturn(0.0);
         when(valoresDto.numero2()).thenReturn(10.0);
