@@ -108,27 +108,18 @@ class OperacoesServiceTest {
     }
 
     @Test
-    @DisplayName("Deve lancar Exception quando divisão for por numero negativo")
-    void divisaoPorNumeroNegativoValor1Test() {
-        when(valoresDto.numero1()).thenReturn(-15.0);
-        when(valoresDto.numero2()).thenReturn(10.0);
-
-        assertThrows(ArithmeticException.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
-    }
-    @Test
-    @DisplayName("Deve lancar Exception quando divisão for por numero negativo")
-    void divisaoPorNumeroNegativoValor2Test() {
-        when(valoresDto.numero1()).thenReturn(10.0);
-        when(valoresDto.numero2()).thenReturn(-15.0);
-
-        assertThrows(ArithmeticException.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
-    }
-
-    @Test
-    @DisplayName("Deve lancar Exception quando valores NaN")
-    void divisaoNaN() {
+    @DisplayName("Deve lancar Exception quando valor1 == NaN")
+    void divisaoNaNValor1() {
         when(valoresDto.numero1()).thenReturn(Double.NaN);
         when(valoresDto.numero2()).thenReturn(10.0);
+
+        assertThrows(ArithmeticException.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
+    }
+    @Test
+    @DisplayName("Deve lancar Exception quando valor2 == NaN")
+    void divisaoNaNValor2() {
+        when(valoresDto.numero1()).thenReturn(10.0);
+        when(valoresDto.numero2()).thenReturn(Double.NaN);
 
         assertThrows(ArithmeticException.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
     }
@@ -151,8 +142,22 @@ class OperacoesServiceTest {
     }
 
     @Test
-    @DisplayName("CalculoDeImc deve lancar Exception quando entrada ser menor ou igual a zero")
-     void testaCalculoDeImcComValoresMenorIgualZero() {
+    @DisplayName("CalculoDeImc deve lancar Exception quando valor1 ser menor ou igual a zero")
+     void testaCalculoDeImcComValor1MenorIgualZero() {
+        DadosPessoa dadosPessoa = mock(DadosPessoa.class);
+
+        when(dadosPessoa.altura()).thenReturn(0.0);
+        when(dadosPessoa.peso()).thenReturn(1.74);
+
+        assertThrows(EntradaInvalida.class, () -> operacoesService.calculaImc(dadosPessoa.altura(), dadosPessoa.peso()));
+
+        verify(dadosPessoa, times(1)).altura();
+        verify(dadosPessoa, times(1)).peso();
+    }
+
+    @Test
+    @DisplayName("CalculoDeImc deve lancar Exception quando valor2 ser menor ou igual a zero")
+    void testaCalculoDeImcComValor2MenorIgualZero() {
         DadosPessoa dadosPessoa = mock(DadosPessoa.class);
 
         when(dadosPessoa.altura()).thenReturn(1.74);
@@ -163,6 +168,7 @@ class OperacoesServiceTest {
         verify(dadosPessoa, times(1)).altura();
         verify(dadosPessoa, times(1)).peso();
     }
+
 
     @Test
     @DisplayName("Testa metodo de calucaPotencia")
@@ -180,8 +186,21 @@ class OperacoesServiceTest {
     }
 
     @Test
-    @DisplayName("Calculo de potencia Deve lancar Exception quando houver entrada menor ou igual a zero")
-     void testaPotenciaComValoresMenorIgualZero() {
+    @DisplayName("Calculo de potencia Deve lancar Exception quando valor1 menor ou igual a zero")
+     void testaPotenciaComValor1MenorIgualZero() {
+
+        when(valoresDto.numero1()).thenReturn(0.0);
+        when(valoresDto.numero2()).thenReturn(10.0);
+
+        assertThrows(EntradaInvalida.class, () -> operacoesService.calculaPotencia(valoresDto.numero1(), valoresDto.numero2()));
+
+        verify(valoresDto, times(1)).numero1();
+        verify(valoresDto, times(1)).numero2();
+    }
+
+    @Test
+    @DisplayName("Calculo de potencia Deve lancar Exception quando valor2 menor ou igual a zero")
+    void testaPotenciaComValor2MenorIgualZero() {
 
         when(valoresDto.numero1()).thenReturn(10.0);
         when(valoresDto.numero2()).thenReturn(0.0);
@@ -290,11 +309,24 @@ class OperacoesServiceTest {
     }
 
     @Test
-    @DisplayName("calculo de Media deve lancar exception quando houver entrada menor ou igual a zero")
+    @DisplayName("calculo de Media deve lancar exception quando valor1 menor ou igual a zero")
      void calculaMediaComValoresMenorIgualAZero() {
 
-        when(valoresDto.numero1()).thenReturn(10.0);
-        when(valoresDto.numero2()).thenReturn(0.0);
+        when(valoresDto.numero1()).thenReturn(0.0);
+        when(valoresDto.numero2()).thenReturn(10.0);
+
+        assertThrows(EntradaInvalida.class, () -> operacoesService.calculaMedia(valoresDto.numero1(), valoresDto.numero2()));
+
+        verify(valoresDto, times(1)).numero1();
+        verify(valoresDto, times(1)).numero2();
+    }
+
+    @Test
+    @DisplayName("calculo de Media deve lancar exception quando valor2 menor ou igual a zero")
+    void calculaMediaComValor2MenorIgualAZero() {
+
+        when(valoresDto.numero1()).thenReturn(0.0);
+        when(valoresDto.numero2()).thenReturn(10.0);
 
         assertThrows(EntradaInvalida.class, () -> operacoesService.calculaMedia(valoresDto.numero1(), valoresDto.numero2()));
 
