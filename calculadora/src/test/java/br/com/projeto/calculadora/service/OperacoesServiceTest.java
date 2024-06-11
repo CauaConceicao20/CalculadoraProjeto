@@ -98,6 +98,15 @@ class OperacoesServiceTest {
     }
 
     @Test
+    @DisplayName("Deve lancar Exception quando valores NaN")
+    void divisaoNaN() {
+        when(valoresDto.numero1()).thenReturn(Double.NaN);
+        when(valoresDto.numero2()).thenReturn(Double.NaN);
+
+        assertThrows(ArithmeticException.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
+    }
+
+    @Test
     @DisplayName("Testa metodo de calculaImc")
      void calculaImc() throws EntradaInvalida {
 
