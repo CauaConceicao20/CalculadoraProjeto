@@ -324,10 +324,10 @@ class OperacoesServiceTest {
 
     @Test
     @DisplayName("calculo de Media deve lancar exception quando valor2 menor ou igual a zero")
-    void calculaMediaComValor2MenorIgualAZero() {
+    void calculaMediaComEntradaNoValor2MenorIgualAZero() {
 
-        when(valoresDto.numero1()).thenReturn(0.0);
-        when(valoresDto.numero2()).thenReturn(10.0);
+        when(valoresDto.numero1()).thenReturn(10.0);
+        when(valoresDto.numero2()).thenReturn(0.0);
 
         assertThrows(EntradaInvalida.class, () -> operacoesService.calculaMedia(valoresDto.numero1(), valoresDto.numero2()));
 
