@@ -88,11 +88,38 @@ class OperacoesServiceTest {
         assertEquals(5.0, resultado);
     }
 
+
     @Test
     @DisplayName("Deve lancar Exception quando divisão for por zero")
-     void divisaoPorZeroTest() {
+     void divisaoPorZeroValor1Test() {
         when(valoresDto.numero1()).thenReturn(10.0);
         when(valoresDto.numero2()).thenReturn(0.0);
+
+        assertThrows(ArithmeticException.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
+    }
+
+    @Test
+    @DisplayName("Deve lancar Exception quando divisão for por zero")
+    void divisaoPorZeroValor2Test() {
+        when(valoresDto.numero1()).thenReturn(0.0);
+        when(valoresDto.numero2()).thenReturn(10.0);
+
+        assertThrows(ArithmeticException.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
+    }
+
+    @Test
+    @DisplayName("Deve lancar Exception quando divisão for por numero negativo")
+    void divisaoPorNumeroNegativoValor1Test() {
+        when(valoresDto.numero1()).thenReturn(-15.0);
+        when(valoresDto.numero2()).thenReturn(10.0);
+
+        assertThrows(ArithmeticException.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
+    }
+    @Test
+    @DisplayName("Deve lancar Exception quando divisão for por numero negativo")
+    void divisaoPorNumeroNegativoValor2Test() {
+        when(valoresDto.numero1()).thenReturn(10.0);
+        when(valoresDto.numero2()).thenReturn(-15.0);
 
         assertThrows(ArithmeticException.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
     }
@@ -101,7 +128,7 @@ class OperacoesServiceTest {
     @DisplayName("Deve lancar Exception quando valores NaN")
     void divisaoNaN() {
         when(valoresDto.numero1()).thenReturn(Double.NaN);
-        when(valoresDto.numero2()).thenReturn(Double.NaN);
+        when(valoresDto.numero2()).thenReturn(10.0);
 
         assertThrows(ArithmeticException.class, () -> operacoesService.divisao(valoresDto.numero1(), valoresDto.numero2()));
     }
