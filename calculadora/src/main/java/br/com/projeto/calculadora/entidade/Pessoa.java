@@ -18,15 +18,9 @@ public class Pessoa {
     private double peso;
     private double altura;
 
-
     public Pessoa(String nome ,double peso, double altura) {
         this.nome = nome;
         this.altura = altura;
         this.peso = peso;
-    }
-
-    public Pessoa(double peso, double altura) {
-        this.peso = peso;
-        this.altura = altura;
     }
 }

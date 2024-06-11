@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/pessoa")
 public class PessoaController {
-
+    /*
     @Autowired
     PessoaService pessoaService;
 
@@ -22,4 +22,5 @@ public class PessoaController {
     public void adicionaPessoa(@RequestBody @Valid DadosPessoa dadosPessoa) {
         pessoaService.save(dadosPessoa);
     }
+     */
 }
