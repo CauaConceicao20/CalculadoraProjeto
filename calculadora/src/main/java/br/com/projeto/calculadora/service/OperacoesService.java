@@ -29,6 +29,8 @@ public class OperacoesService {
     public double divisao(double valor1, double valor2) throws ArithmeticException{
         if(valor1 <= 0 || valor2 <= 0) {
             throw new ArithmeticException(VALORMENORQUEZERO);
+        }else if(Double.isNaN(valor1) || Double.isNaN(valor2)){
+            throw new ArithmeticException("Valor é NaN");
         }else {
             return  valor1 / valor2;
         }
