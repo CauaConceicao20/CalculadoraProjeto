@@ -9,14 +9,4 @@ public record ValoresPrecisosDto(
         BigDecimal numeroPreciso1,
         @Positive
         BigDecimal numeroPreciso2) {
-
-    @Override
-    public BigDecimal numeroPreciso1() {
-        return numeroPreciso1;
-    }
-
-    @Override
-    public BigDecimal numeroPreciso2() {
-        return numeroPreciso2;
-    }
 }

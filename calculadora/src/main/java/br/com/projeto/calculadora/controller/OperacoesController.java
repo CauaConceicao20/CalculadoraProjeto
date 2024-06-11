@@ -15,7 +15,7 @@ public class OperacoesController {
 
     @PostMapping("/soma")
     @Transactional
-    public ResponseEntity<?> soma(@RequestBody @Valid ValoresDto val) {
-        return null;
+    public ResponseEntity<Double> soma(@RequestBody @Valid ValoresDto val) {
+        return ResponseEntity.ok().build();
     }
 }
