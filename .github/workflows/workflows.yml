@@ -145,4 +145,3 @@ jobs:
             lftp -u $FTP_USER,$FTP_PASS $FTP_HOST -e "
             mirror -R calculadora/target/site/jacoco /CalculadoraProjeto;
             quit"
- 
