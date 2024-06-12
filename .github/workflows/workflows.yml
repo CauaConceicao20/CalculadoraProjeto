@@ -110,7 +110,7 @@ jobs:
 
       - name: Send JaCoCo Report to FTP
         env:
-          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_HOST: "joaobsjunior.com.br"
           FTP_USER: ${{ secrets.FTP_USER }}
           FTP_PASS: ${{ secrets.FTP_PASS }}
         run: |
@@ -119,7 +119,7 @@ jobs:
           mirror -R calculadora/target/site/jacoco /CalculadoraProjeto;
           quit"
           echo "# Link Jacoco report" >> $GITHUB_STEP_SUMMARY
-          echo "https://joaobsjunior.com.br/projeto-a3/CalculadoraProjeto/$JACOCO_REPORT/" >> $GITHUB_STEP_SUMMARY
+          echo "https://$FTP_HOST/projeto-a3/CalculadoraProjeto/$JACOCO_REPORT/" >> $GITHUB_STEP_SUMMARY
 
   versioning:
     runs-on: ubuntu-latest
