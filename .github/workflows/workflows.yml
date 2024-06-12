@@ -114,12 +114,13 @@ jobs:
           FTP_USER: ${{ secrets.FTP_USER }}
           FTP_PASS: ${{ secrets.FTP_PASS }}
         run: |
+          FTPHOST = joaobsjunior.com.br
           JACOCO_REPORT="JacocoReport__$(date '+%F__%H-%M-%S')"
           lftp -u $FTP_USER,$FTP_PASS $FTP_HOST -e "
           mirror -R calculadora/target/site/jacoco /CalculadoraProjeto;
           quit"
           echo "# Link Jacoco report" >> $GITHUB_STEP_SUMMARY
-          echo "https://$FTP_HOST/CalculadoraProjeto/$JACOCO_REPORT/" >> $GITHUB_STEP_SUMMARY
+          echo "https://$FTPHOST/projeto-a3/CalculadoraProjeto/$JACOCO_REPORT/" >> $GITHUB_STEP_SUMMARY
 
   versioning:
     runs-on: ubuntu-latest
