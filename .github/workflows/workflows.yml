@@ -119,7 +119,7 @@ jobs:
           mirror -R calculadora/target/site/jacoco /CalculadoraProjeto;
           quit"
           echo "# Link Jacoco report" >> $GITHUB_STEP_SUMMARY
-          echo "https://$FTP_HOST/trabalho-a3/CalculadoraProjeto/$JACOCO_REPORT/" >> $GITHUB_STEP_SUMMARY
+          echo "https://$FTP_HOST/CalculadoraProjeto/$JACOCO_REPORT/" >> $GITHUB_STEP_SUMMARY
 
   versioning:
     runs-on: ubuntu-latest
