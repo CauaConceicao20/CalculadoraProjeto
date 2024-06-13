@@ -8,6 +8,7 @@ class CalculadoraApplicationTests {
 
 	@Test
 	void contextLoads() {
+		//verifica se o contexto da aplicação pode ser carregado com sucesso.
 	}
 
 }
